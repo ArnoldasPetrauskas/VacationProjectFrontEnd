@@ -1,33 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>👋🏼</title>
-  </head>
-  <body>
-    <div style="max-width: 450px; margin: 0 auto;">
-      <h1>Login page 🔑</h1>
-      <form th:action="@{/index}" method="POST">
-        <div th:if="${param.error}">
-          <div style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</div>
-        </div>
-        <table>
-          <tr>
-            <td style="height:30px">Username:</td>
-            <td><input type="text" name="username" required /></td>
-          </tr>
-          <tr>
-            <td style="padding-top: 10px; height:30px">Password:</td>
-            <td><input type="password" name="password" required /></td>
-          </tr>
-          <tr>
-            <td style="padding-top: 10px">
-              <input type="submit" value="Login"/>
-            </td>
-          </tr>
-        </table>
-      </form>
-    </div>
-  </body>
+    <title>Login</title>
+</head>
+<body>
+<div style="max-width: 450px; margin: 0 auto;">
+    <h2>Login page</h2>
+    <p th:if="${loginError}" class="error">Wrong user or password</p>
+    <form th:action="@{/login}" th:object="${user}" method="post">
+        <label for="username">Username</label>:
+        <input type="text" id="username" name="username" autofocus="autofocus" th:field="*{username}"/> <br/>
+        <label for="password">Password</label>:
+        <input type="password" id="password" name="password" th:field="*{password}"/> <br/>
+        <input type="submit" value="Log in"/>
+    </form>
+</div>
+</body>
 </html>
