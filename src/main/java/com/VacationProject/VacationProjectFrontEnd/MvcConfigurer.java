@@ -1,4 +1,4 @@
-package com.ca.security.roles.springroles;
+package com.VacationProject.VacationProjectFrontEnd;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -9,12 +9,8 @@ public class MvcConfigurer implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry){
 
-        // PATH: /xxx/yyy : VIEW (Html): admin/dashboard.html
-        registry.addViewController("").setViewName("index");
-        registry.addViewController("/").setViewName("index");
-        registry.addViewController("/index").setViewName("index");
-        //registry.addViewController("/login").setViewName("index");
-        registry.addViewController("/admin/dashboard").setViewName("admin/dashboard");
-        //registry.addViewController("/home").setViewName("home");
+        registry.addViewController("").setViewName("pages/index");
+        registry.addViewController("/").setViewName("pages/index");
+        registry.addViewController("/index").setViewName("pages/index");
     }
 }
