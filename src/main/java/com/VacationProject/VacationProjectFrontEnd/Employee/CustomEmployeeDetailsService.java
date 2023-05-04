@@ -1,22 +1,23 @@
-package com.ca.security.roles.springroles.user;
+package com.VacationProject.VacationProjectFrontEnd.User;
 
+import com.VacationProject.VacationProjectFrontEnd.Persistance.EmployeeRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class CustomUserDetailsService implements UserDetailsService {
-    private final UserRepository userRepository;
+    private final EmployeeRepository userRepository;
 
-    public CustomUserDetailsService(UserRepository userRepository) {
+    public CustomUserDetailsService(EmployeeRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository
+        Employee user = userRepository
             .findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException("No user found with the given " +
                 "username: " + username));
-        return new UserDetailsMapper(user);
+        return new EmployeeDetailsMapper(user);
     }
 }

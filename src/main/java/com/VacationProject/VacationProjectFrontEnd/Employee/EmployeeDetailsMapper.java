@@ -1,4 +1,4 @@
-package com.ca.security.roles.springroles.user;
+package com.VacationProject.VacationProjectFrontEnd.User;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,28 +8,28 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class UserDetailsMapper implements UserDetails {
-    private final User user;
+public class EmployeeDetailsMapper implements UserDetails {
+    private final Employee employee;
 
-    public UserDetailsMapper(User user) {
-        this.user = user;
+    public EmployeeDetailsMapper(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + employee.getRole()));
         return authorities;
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return employee.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return employee.getUsername();
     }
 
     @Override

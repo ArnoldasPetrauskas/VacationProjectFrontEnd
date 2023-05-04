@@ -1,4 +1,4 @@
-package com.VacationProject.VacationProjectFrontEnd.Entities;
+package com.VacationProject.VacationProjectFrontEnd.User;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,9 +6,10 @@ import lombok.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Data
-@Table(name = "users")
-public class User {
+@Table(name = "employees")
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
