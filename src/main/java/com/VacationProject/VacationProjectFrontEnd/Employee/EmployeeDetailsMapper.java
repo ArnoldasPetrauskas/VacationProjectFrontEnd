@@ -29,7 +29,7 @@ public class EmployeeDetailsMapper implements UserDetails {
 
     @Override
     public String getUsername() {
-        return employee.getUsername();
+        return employee.getEmployeeName();
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Employee {
 
     @NonNull
     @Column(nullable = false, unique = true, length = 30)
-    private String username;
+    private String employeeName;
 
     @NonNull
     @Column(nullable = false)
@@ -43,7 +43,7 @@ public class Employee {
     }
 
     public Employee(String username, String password) {
-        this.username = username;
+        this.employeeName = username;
         this.password = password;
     }
 
@@ -55,12 +55,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmployeeName() {
+        return employeeName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
     public String getPassword() {

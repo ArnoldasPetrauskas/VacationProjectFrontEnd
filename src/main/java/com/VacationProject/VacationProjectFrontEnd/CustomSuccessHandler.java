@@ -25,7 +25,7 @@ public class CustomSuccessHandler extends SavedRequestAwareAuthenticationSuccess
                 .stream().findFirst().get().toString();
 
         switch (role){
-            case "ROLE_USER" -> redirectURL = "/vacations/user/home";
+            case "ROLE_EMPLOYEE" -> redirectURL = "/vacations/employee/home";
             case "ROLE_ADMIN" -> redirectURL = "/vacations/admin/dashboard";
         }
         response.sendRedirect(redirectURL);

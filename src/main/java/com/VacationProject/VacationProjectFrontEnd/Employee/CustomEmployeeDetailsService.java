@@ -12,11 +12,11 @@ public class CustomEmployeeDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String employeeName) throws UsernameNotFoundException {
         Employee user = employeeRepository
-            .findByUsername(username)
+            .findByEmployeeName(employeeName)
             .orElseThrow(() -> new UsernameNotFoundException("No user found with the given " +
-                "username: " + username));
+                "employeeName: " + employeeName));
         return new EmployeeDetailsMapper(user);
     }
 }

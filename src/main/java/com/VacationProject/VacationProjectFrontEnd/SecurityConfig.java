@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 
 @Configuration
 @EnableWebSecurity
@@ -22,15 +23,16 @@ public class SecurityConfig{
         return http
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/style/**", "/resources/**",  "", "/", "/vacations", "/login", "/register"
+                        "/style/**", "/resources/**",  "", "/", "/vacations", "/login"
                 )
                 .permitAll()
            .and()
                 .authorizeHttpRequests()
-                    .requestMatchers("/user/**").hasAuthority("USER")
-                    .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                .anyRequest()
-                .authenticated()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/vacations/**").access(
+                        new WebExpressionAuthorizationManager(
+                                "hasRole('ADMIN') and hasRole('EMPLOYEE')"
+                        ))
            .and()
                 .formLogin()
                 .loginPage("/vacations/login")
