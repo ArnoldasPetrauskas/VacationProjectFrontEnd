@@ -1,6 +1,5 @@
-package com.VacationProject.VacationProjectFrontEnd.Persistance;
+package com.VacationProject.VacationProjectFrontEnd.Employee;
 
-import com.VacationProject.VacationProjectFrontEnd.User.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

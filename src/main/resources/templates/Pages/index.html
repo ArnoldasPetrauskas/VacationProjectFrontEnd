@@ -1,20 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head data-th-replace="~{partials/head(title='index page')}"></head>
     <body>
         <header data-th-replace="~{partials/header}"></header>
         <main class="container-fluid">
-            <div data-th-unless="${session.cookiebanner}">
-                <div data-th-replace="~{partials/cookie-banner}"></div>
-            </div>
-            <section class="create-comments-section text-center">
-                <div class="jombotron text-center">
-                    <h1>Leave your comment</h1>
-                </div>
-                <div class="form-container" data-th-insert="~{partials/comments/createform}"></div>
-            </section>
-            <th:fragment data-th-replace="~{partials/comments/comments}"></th:fragment>
         </main>
-        <footer data-th-replace="~{partials/footer}"></footer>
     </body>
 </html>

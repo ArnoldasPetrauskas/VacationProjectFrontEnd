@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Admin dashboard</title>
 </head>
 <body>
-$END$
+<div>
+  <div>
+    <a style="text-decoration: none" href="javascript: document.logoutForm.submit()">Logout 🔓</a>
+    <form name="logoutForm" th:action="@{/logout}" method="POST" th:hidden="true">
+      <input hidden type="submit" value="Logout"/>
+    </form>
+  </div>
+</div>
 </body>
 </html>

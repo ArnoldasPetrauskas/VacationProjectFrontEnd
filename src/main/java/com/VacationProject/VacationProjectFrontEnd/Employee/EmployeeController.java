@@ -1,6 +1,5 @@
-package com.VacationProject.VacationProjectFrontEnd.Controllers;
+package com.VacationProject.VacationProjectFrontEnd.Employee;
 
-import com.VacationProject.VacationProjectFrontEnd.Persistance.EmployeeRepository;
 import org.springframework.stereotype.Controller;
 
 @Controller

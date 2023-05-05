@@ -1,4 +1,4 @@
-package com.VacationProject.VacationProjectFrontEnd.User;
+package com.VacationProject.VacationProjectFrontEnd.Employee;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
