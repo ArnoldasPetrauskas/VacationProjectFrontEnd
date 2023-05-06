@@ -7,12 +7,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfigurer implements WebMvcConfigurer {
 
-    public void addViewControllers(ViewControllerRegistry registry){
+    public void addViewControllers(ViewControllerRegistry registry) {
 
         registry.addViewController("").setViewName("pages/index");
         registry.addViewController("/").setViewName("pages/index");
         registry.addViewController("/index").setViewName("pages/index");
-        registry.addViewController("/vacations").setViewName("pages/index");
+//        registry.addViewController("/vacations").setViewName("pages/index");
         registry.addViewController("/vacations/login").setViewName("login");
         registry.addViewController("/vacations/employee/home").setViewName("employee/home");
         registry.addViewController("/vacations/admin/dashboard").setViewName("admin/dashboard");

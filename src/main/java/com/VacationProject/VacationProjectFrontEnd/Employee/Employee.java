@@ -42,8 +42,8 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String username, String password) {
-        this.employeeName = username;
+    public Employee(String employeeName, String password) {
+        this.employeeName = employeeName;
         this.password = password;
     }
 

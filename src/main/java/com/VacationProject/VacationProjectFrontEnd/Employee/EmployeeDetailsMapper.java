@@ -11,7 +11,6 @@ import java.util.Collection;
 import java.util.List;
 
 public class EmployeeDetailsMapper implements UserDetails {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final Employee employee;
 
     public EmployeeDetailsMapper(Employee employee) {

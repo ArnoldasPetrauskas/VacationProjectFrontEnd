@@ -16,7 +16,6 @@ import java.io.IOException;
 @Component
 public class CustomSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public void onAuthenticationSuccess(
@@ -27,9 +26,8 @@ public class CustomSuccessHandler extends SavedRequestAwareAuthenticationSuccess
         String redirectURL = "";
         String role = employeeDetailsMapper.getAuthorities()
                 .stream().findFirst().get().toString();
-        logger.info("Role" + role);
 
-        switch (role){
+        switch (role) {
             case "ROLE_EMPLOYEE" -> redirectURL = "/vacations/employee/home";
             case "ROLE_ADMIN" -> redirectURL = "/vacations/admin/dashboard";
             default -> redirectURL = "/vacations/login";

@@ -22,7 +22,7 @@ public class SecurityConfig{
         return http
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/style/**", "/resources/**",  "", "/", "/vacations", "/login"
+                        "/style/**", "/resources/**", "/vacations/**", "/login"
                 )
                 .permitAll()
            .and()

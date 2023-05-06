@@ -1,8 +1,18 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <body>
-        <header data-th-replace="~{partials/header}"></header>
-        <main class="container-fluid">
-        </main>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Vacations</title>
+</head>
+<body>
+<header th:replace="~{partials/header}"></header>
+<main class="container-fluid">
+    <h1>List of Vacations</h1>
+    <div th:each="vacation : ${vacations}">
+        <a th:href="@{/vacations/vacation/{id}(id=${vacation.id})}">
+            <div th:text="${vacation.title}"></div>
+        </a>
+    </div>
+</main>
+</body>
 </html>

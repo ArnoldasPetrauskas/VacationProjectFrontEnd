@@ -5,15 +5,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class CustomEmployeeDetailsService implements UserDetailsService {
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
-    public CustomEmployeeDetailsService(EmployeeRepository userRepository) {
-        this.employeeRepository = userRepository;
+    public CustomEmployeeDetailsService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String employeeName) throws UsernameNotFoundException {
-        Employee employee = employeeRepository
+        Employee employee = employeeService
             .findByEmployeeName(employeeName)
             .orElseThrow(() -> new UsernameNotFoundException("No user found with the given " +
                 "employeeName: " + employeeName));
