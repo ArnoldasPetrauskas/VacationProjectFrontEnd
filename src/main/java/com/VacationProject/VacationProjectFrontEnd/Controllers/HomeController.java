@@ -14,6 +14,4 @@ public class HomeController {
     public HomeController(EmployeeRepository employeeRepository){
         this.employeeRepository = employeeRepository;
     }
-
-
 }

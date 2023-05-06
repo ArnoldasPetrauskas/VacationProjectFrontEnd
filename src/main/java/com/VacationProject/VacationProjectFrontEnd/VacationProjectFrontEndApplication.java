@@ -46,7 +46,6 @@ public class VacationProjectFrontEndApplication implements CommandLineRunner {
 
     private List<Employee> initUsers() {
         Employee user = new Employee("user", passwordEncoder().encode("pass"));
-
         Employee god = new Employee("god", passwordEncoder().encode("god"));
         god.setRole("ADMIN");
         return List.of(user, god);

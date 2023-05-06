@@ -26,7 +26,7 @@ public class Employee {
 
     @NonNull
     @Column(nullable = false)
-    private String role = "USER";
+    private String role = "EMPLOYEE";
 
 
     @ManyToMany(
@@ -85,5 +85,16 @@ public class Employee {
 
     public void setVacations(Set<Vacation> vacations) {
         this.vacations = vacations;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", employeeName='" + employeeName + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", vacations=" + vacations +
+                '}';
     }
 }

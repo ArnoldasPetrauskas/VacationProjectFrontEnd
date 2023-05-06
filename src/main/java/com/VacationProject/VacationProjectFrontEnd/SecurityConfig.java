@@ -20,19 +20,17 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(
                         "/style/**", "/resources/**",  "", "/", "/vacations", "/login"
                 )
                 .permitAll()
            .and()
-                .authorizeHttpRequests(
-                        (authorize )-> authorize
-                                .requestMatchers("/employee/**").hasRole("EMPLOYEE")
-                                .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
+                .authorizeHttpRequests().requestMatchers("/admin/**").hasRole("ADMIN")
+           .and()
+                .authorizeHttpRequests().requestMatchers("/employee/**").hasRole("EMPLOYEE")
+                .anyRequest().authenticated()
+           .and()
                 .formLogin()
                 .loginPage("/vacations/login")
                 .usernameParameter("username")

@@ -1,5 +1,7 @@
 package com.VacationProject.VacationProjectFrontEnd.Employee;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class EmployeeDetailsMapper implements UserDetails {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final Employee employee;
 
     public EmployeeDetailsMapper(Employee employee) {
