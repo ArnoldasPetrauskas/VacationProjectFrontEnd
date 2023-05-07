@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@ToString
 @Table(name = "employees")
 public class Employee {
 
@@ -28,16 +29,12 @@ public class Employee {
     @Column(nullable = false)
     private String role = "EMPLOYEE";
 
-
-    @ManyToMany(
-            fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            mappedBy = "employees")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @JsonIgnore
+    @ManyToMany(mappedBy = "vacationEmployees")
     private Set<Vacation> vacations = new HashSet<>();
+
 
     public Employee() {
     }
@@ -87,14 +84,4 @@ public class Employee {
         this.vacations = vacations;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", employeeName='" + employeeName + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                ", vacations=" + vacations +
-                '}';
-    }
 }

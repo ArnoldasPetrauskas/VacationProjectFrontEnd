@@ -20,6 +20,5 @@ public class Organizer {
     @NonNull
     private String name;
 
-
     private Set<Vacation> vacations;
 }

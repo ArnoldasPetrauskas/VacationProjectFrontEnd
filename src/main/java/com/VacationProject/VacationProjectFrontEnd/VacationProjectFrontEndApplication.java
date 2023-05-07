@@ -40,7 +40,7 @@ public class VacationProjectFrontEndApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        employeeService.saveAll(initEmployees());
+//        employeeService.saveAll(initEmployees());
     }
 
     private List<Employee> initEmployees() {
