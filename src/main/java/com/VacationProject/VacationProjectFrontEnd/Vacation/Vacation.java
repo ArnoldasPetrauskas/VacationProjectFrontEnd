@@ -14,6 +14,9 @@ import java.util.Set;
 @Table(name = "vacations")
 public class Vacation {
 
+    public Vacation() {
+    }
+
     public Vacation(
             String title,
             String description,

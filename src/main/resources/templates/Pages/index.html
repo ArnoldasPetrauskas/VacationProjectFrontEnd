@@ -7,10 +7,10 @@
 <body>
 <header th:replace="~{partials/header}"></header>
 <main class="container-fluid">
-    <h1>List of Vacations</h1>
-    <div th:each="vacation : ${vacations}">
-        <a th:href="@{/vacations/vacation/{id}(id=${vacation.id})}">
-            <div th:text="${vacation.title}"></div>
+    <h1>List of organizers</h1>
+    <div th:each="organizer : ${organizers}">
+        <a th:href="@{/vacations/organizer/{id}(id=${organizer.id})}">
+            <div th:text="${organizer.name}"></div>
         </a>
     </div>
 </main>

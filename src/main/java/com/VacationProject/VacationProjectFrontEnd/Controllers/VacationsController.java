@@ -1,6 +1,7 @@
 package com.VacationProject.VacationProjectFrontEnd.Controllers;
 
 import com.VacationProject.VacationProjectFrontEnd.Employee.EmployeeService;
+import com.VacationProject.VacationProjectFrontEnd.Organizer.Organizers;
 import com.VacationProject.VacationProjectFrontEnd.Vacation.Vacation;
 import com.VacationProject.VacationProjectFrontEnd.Vacation.Vacations;
 import jakarta.servlet.http.HttpSession;
@@ -32,10 +33,10 @@ public class VacationsController {
 
     @GetMapping("/vacations")
     public String index(Model model) {
-        ResponseEntity<Vacations> response = restTemplate
-                .getForEntity("http://localhost:8082/vacations", Vacations.class);
+        ResponseEntity<Organizers> response = restTemplate
+                .getForEntity("http://localhost:8082/organizers", Organizers.class);
 
-        model.addAttribute("vacations", response.getBody().getVacations());
+        model.addAttribute("organizers", response.getBody().getOrganizers());
 
         return "pages/index";
     }
@@ -43,7 +44,7 @@ public class VacationsController {
     @GetMapping("/vacations/vacation/{id}")
     public String singleVacation(@PathVariable int id, Model model){
         ResponseEntity<Vacation> response = restTemplate
-                .getForEntity("http://localhost:8082/vacations" + id, Vacation.class);
+                .getForEntity("http://localhost:8082/vacations/vacation/" + id, Vacation.class);
 
         model.addAttribute("vacation", response.getBody());
 

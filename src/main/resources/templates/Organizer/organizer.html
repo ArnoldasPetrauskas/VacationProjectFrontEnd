@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Organizer</title>
+</head>
+<body>
+<div th:object="${organizer}">
+    <h2 th:text="*{name}">Title</h2>
+    <div th:each="vacation : ${organizer.vacations}">
+        <h2 th:text="${vacation.title}">Title</h2>
+        <p th:text="${vacation.description}">Description</p>
+        <p th:text="${vacation.country}">Country</p>
+        <p th:text="${vacation.city}">City</p>
+        <p th:text="${vacation.vacationStartDate}">Start date:</p>
+        <p th:text="${vacation.vacationEndDate}">End date</p>
+        <p th:text="${vacation.price}">Price</p>
+    </div>
+</div>
+</body>
+</html>

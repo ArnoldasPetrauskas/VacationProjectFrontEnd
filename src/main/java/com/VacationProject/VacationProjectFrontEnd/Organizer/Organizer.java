@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -20,5 +21,5 @@ public class Organizer {
     @NonNull
     private String name;
 
-    private Set<Vacation> vacations;
+    private List<Vacation> vacations;
 }
