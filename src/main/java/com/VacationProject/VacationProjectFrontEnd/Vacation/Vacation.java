@@ -7,7 +7,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @ToString
@@ -69,7 +70,7 @@ public class Vacation {
             name = "vacation_employees",
             joinColumns = @JoinColumn(name = "vacation_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"))
-    private Set<Employee> vacationEmployees;
+    private List<Employee> vacationEmployees = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -144,7 +145,7 @@ public class Vacation {
     }
     public void addEmployee(Employee employee) {
         vacationEmployees.add(employee);
-
+        employee.addVacation(this);
     }
 
     public void removeEmployee(int id) {

@@ -23,13 +23,13 @@ public class CustomSuccessHandler extends SavedRequestAwareAuthenticationSuccess
             HttpServletResponse response,
             Authentication authentication) throws ServletException, IOException {
         EmployeeDetailsMapper employeeDetailsMapper = (EmployeeDetailsMapper) authentication.getPrincipal();
-        String redirectURL = "";
+        String redirectURL;
         String role = employeeDetailsMapper.getAuthorities()
                 .stream().findFirst().get().toString();
 
         switch (role) {
             case "ROLE_EMPLOYEE" -> redirectURL = "/vacations/employee/home";
-            case "ROLE_ADMIN" -> redirectURL = "/vacations/admin/dashboard";
+            case "ROLE_ADMIN" -> redirectURL = "/admin/dashboard";
             default -> redirectURL = "/vacations/login";
         }
         response.sendRedirect(redirectURL);

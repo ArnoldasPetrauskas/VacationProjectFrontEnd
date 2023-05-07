@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-public class CustomerRepositoryIT {
+public class EmployeeRepositoryIT {
 
     @Autowired
     private TestEntityManager entityManager;
@@ -22,14 +22,14 @@ public class CustomerRepositoryIT {
     private EmployeeRepository repository;
 
     @Test
-    public void whenIndividualIsCreated_theyArePersisted(){
+    public void whenEmployeeIsCreated_theyArePersisted(){
         var individual = new Employee(
                 "name",
                 "password"
         );
 
-        var savedIndividual = repository.save(individual);
-        var persistedIndividual = entityManager.find(Employee.class, savedIndividual.getId());
-        assertEquals(persistedIndividual, savedIndividual);
+        var savedEmployee = repository.save(individual);
+        var persistedEmployee = entityManager.find(Employee.class, savedEmployee.getId());
+        assertEquals(persistedEmployee, savedEmployee);
     }
 }

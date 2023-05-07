@@ -1,5 +1,6 @@
 package com.VacationProject.VacationProjectFrontEnd.Employee;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +15,21 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public Optional<Employee> findByEmployeeName(String employeeName) {
-        return employeeRepository.findByEmployeeName(employeeName);
+    public Employee findByEmployeeName(String employeeName) {
+        return employeeRepository.findByEmployeeName(employeeName)
+                .orElseThrow(() -> new UsernameNotFoundException("No user found with the given " +
+                        "employeeName: " + employeeName));
+
     }
 
+    public Employee findById(int id){
+        return employeeRepository.findById(id);
+    }
     public void saveAll(List<Employee> employeeList) {
         employeeRepository.saveAll(employeeList);
+    }
+
+    public List<Employee> findAll() {
+        return employeeRepository.findAll();
     }
 }

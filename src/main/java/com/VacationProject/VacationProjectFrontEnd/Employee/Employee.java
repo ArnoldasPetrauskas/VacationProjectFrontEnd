@@ -1,12 +1,11 @@
 package com.VacationProject.VacationProjectFrontEnd.Employee;
 
 import com.VacationProject.VacationProjectFrontEnd.Vacation.Vacation;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @ToString
@@ -29,11 +28,8 @@ public class Employee {
     @Column(nullable = false)
     private String role = "EMPLOYEE";
 
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @JsonIgnore
     @ManyToMany(mappedBy = "vacationEmployees")
-    private Set<Vacation> vacations = new HashSet<>();
+    private List<Vacation> vacations = new ArrayList<>();
 
 
     public Employee() {
@@ -76,12 +72,11 @@ public class Employee {
         this.role = role;
     }
 
-    public Set<Vacation> getVacations() {
+    public List<Vacation> getVacations() {
         return vacations;
     }
 
-    public void setVacations(Set<Vacation> vacations) {
-        this.vacations = vacations;
+    public void addVacation(Vacation vacation) {
+        this.vacations.add(vacation);
     }
-
 }
