@@ -9,7 +9,16 @@
 <header th:replace="~{partials/headerLoggedIn}"></header>
 
 <div th:object="${employee}">
-    <h2>🏡 Home page of <span th:text="*{employeeName}" ></span></h2>
+    <h3>🏡 Home page of <span sec:authentication="name"></span></h3>
+</div>
+<div th:each="vacation : ${employee.vacations}">
+    <h2 th:text="${vacation.title}">Title</h2>
+    <p th:text="${vacation.description}">Description</p>
+    <p th:text="${vacation.country}">Country</p>
+    <p th:text="${vacation.city}">City</p>
+    <p th:text="${vacation.vacationStartDate}">Start date:</p>
+    <p th:text="${vacation.vacationEndDate}">End date</p>
+    <p th:text="${vacation.price}">Price</p>
 </div>
 <div>
     <div th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
@@ -24,8 +33,6 @@
                         value="Delete"/>
             </p>
         </form>
-    </div>
-    <div>
     </div>
 </div>
 </body>

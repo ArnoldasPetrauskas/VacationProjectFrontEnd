@@ -1,5 +1,6 @@
 package com.VacationProject.VacationProjectFrontEnd.Employee;
 
+import com.VacationProject.VacationProjectFrontEnd.Vacation.Vacation;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,6 @@ import java.util.List;
 
 @Service
 public class EmployeeService {
-
 
     private final PasswordEncoder passwordEncoder;
 
@@ -54,5 +54,11 @@ public class EmployeeService {
 
     public void deleteById(int employeeId) {
         employeeRepository.deleteById(employeeId);
+    }
+
+    public void addVacationToEmployee(int employeeId, Vacation vacation){
+        Employee employee = findById(employeeId);
+        employee.addVacation(vacation);
+        employeeRepository.save(employee);
     }
 }

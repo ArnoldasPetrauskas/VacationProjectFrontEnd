@@ -3,6 +3,7 @@ package com.VacationProject.VacationProjectFrontEnd;
 import com.VacationProject.VacationProjectFrontEnd.Employee.CustomEmployeeDetailsService;
 import com.VacationProject.VacationProjectFrontEnd.Employee.Employee;
 import com.VacationProject.VacationProjectFrontEnd.Employee.EmployeeService;
+import com.VacationProject.VacationProjectFrontEnd.Employee.Employees;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +18,10 @@ import java.util.List;
 
 @SpringBootApplication
 public class VacationProjectFrontEndApplication implements CommandLineRunner {
-
+    @Bean
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -50,8 +54,4 @@ public class VacationProjectFrontEndApplication implements CommandLineRunner {
         return List.of(user, god);
     }
 
-    @Bean
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 }

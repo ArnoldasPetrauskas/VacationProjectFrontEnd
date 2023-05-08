@@ -1,6 +1,7 @@
 package com.VacationProject.VacationProjectFrontEnd.Employee;
 
 import com.VacationProject.VacationProjectFrontEnd.Vacation.Vacation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -78,5 +79,6 @@ public class Employee {
 
     public void addVacation(Vacation vacation) {
         this.vacations.add(vacation);
+        vacation.addEmployee(this);
     }
 }

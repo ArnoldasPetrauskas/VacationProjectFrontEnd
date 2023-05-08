@@ -65,7 +65,9 @@ public class Vacation {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
     @JoinTable(
             name = "vacation_employees",
             joinColumns = @JoinColumn(name = "vacation_id",referencedColumnName = "id"),
@@ -145,7 +147,6 @@ public class Vacation {
     }
     public void addEmployee(Employee employee) {
         vacationEmployees.add(employee);
-        employee.addVacation(this);
     }
 
     public void removeEmployee(int id) {

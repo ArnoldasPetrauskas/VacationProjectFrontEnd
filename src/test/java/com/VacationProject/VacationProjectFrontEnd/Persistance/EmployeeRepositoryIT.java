@@ -28,6 +28,7 @@ public class EmployeeRepositoryIT {
                 "password"
         );
 
+
         var savedEmployee = repository.save(individual);
         var persistedEmployee = entityManager.find(Employee.class, savedEmployee.getId());
         assertEquals(persistedEmployee, savedEmployee);
