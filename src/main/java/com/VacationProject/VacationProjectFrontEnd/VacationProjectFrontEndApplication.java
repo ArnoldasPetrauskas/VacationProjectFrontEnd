@@ -32,10 +32,7 @@ public class VacationProjectFrontEndApplication implements CommandLineRunner {
         return authProvider;
     }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+
 
     public static void main(String[] args) {
         SpringApplication.run(VacationProjectFrontEndApplication.class, args);

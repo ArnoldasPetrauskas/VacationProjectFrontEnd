@@ -10,31 +10,25 @@
 <main class="container-fluid">
 
     <h4>List of employees</h4>
-    <div th:each="employee : ${employees}">
-        <a th:href="@{/vacations/employee/home/{id}(id=${employee.id})}">
+    <div class="employee" th:each="employee : ${employees}">
+        <a th:href="@{/employee/home/{id}(id=${employee.id})}">
             <div th:text="${employee.employeeName}"></div>
         </a>
     </div>
     <button><a th:href="@{/admin/dashboard/newEmployee}">Create new</a></button>
 
     <h4>List of organizers</h4>
-    <div th:each="organizer : ${organizers}">
+    <div class="organizer" th:each="organizer : ${organizers}">
         <a th:href="@{/vacations/organizer/{id}(id=${organizer.id})}">
             <div th:text="${organizer.name}"></div>
         </a>
     </div>
 
     <h4>List of vacations</h4>
-    <div th:each="vacation : ${vacations}">
+    <div class="vacations" th:each="vacation : ${vacations}">
         <a th:href="@{/vacations/organizer/{id}(id=${organizer.id})}">
             <div th:text="${organizer.name}"></div>
         </a>
-    </div>
-
-    <div>
-        <div>
-
-        </div>
     </div>
 </main>
 </body>

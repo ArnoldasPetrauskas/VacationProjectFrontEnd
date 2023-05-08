@@ -1,10 +1,15 @@
 package com.VacationProject.VacationProjectFrontEnd;
 
+import com.VacationProject.VacationProjectFrontEnd.Employee.CustomEmployeeDetailsService;
+import com.VacationProject.VacationProjectFrontEnd.Employee.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -12,10 +17,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
+    @Autowired
+    private DaoAuthenticationProvider authenticationProvider;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+
     private final CustomSuccessHandler customSuccessHandler;
     public SecurityConfig (
             CustomSuccessHandler customSuccessHandler
@@ -24,6 +33,8 @@ public class SecurityConfig{
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.authenticationProvider(authenticationProvider);
+
         return http
                 .authorizeHttpRequests()
                 .requestMatchers(
@@ -33,7 +44,7 @@ public class SecurityConfig{
            .and()
                 .authorizeHttpRequests().requestMatchers("/admin/**").hasRole("ADMIN")
            .and()
-                .authorizeHttpRequests().requestMatchers("/employee/**").hasRole("EMPLOYEE")
+                .authorizeHttpRequests().requestMatchers("/employee/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
            .and()
                 .formLogin()
@@ -45,7 +56,7 @@ public class SecurityConfig{
            .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/index")
+                .logoutSuccessUrl("/vacations")
                 .permitAll()
            .and()
                 .build();

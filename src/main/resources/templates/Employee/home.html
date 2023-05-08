@@ -2,16 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
-  <meta charset="UTF-8">
-  <title>🏡</title>
+    <meta charset="UTF-8">
+    <title>🏡</title>
 </head>
 <body>
 <header th:replace="~{partials/headerLoggedIn}"></header>
-<h1>Home page 🏡</h1>
-<div>
-  <div>
 
-  </div>
+<div th:object="${employee}">
+    <h2>🏡 Home page of <span th:text="*{employeeName}" ></span></h2>
+</div>
+<div>
+    <div th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+        <form th:action="@{'/employees/delete/'+${employeeId}}" th:object="${employee}" th:method="delete">
+            <input
+                    type="hidden"
+                    name="_method"
+                    value="delete">
+            <p>
+                <input
+                        type="submit"
+                        value="Delete"/>
+            </p>
+        </form>
+    </div>
+    <div>
+    </div>
 </div>
 </body>
 </html>

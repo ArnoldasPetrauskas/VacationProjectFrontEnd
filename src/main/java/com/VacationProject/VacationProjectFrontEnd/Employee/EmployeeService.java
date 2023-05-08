@@ -1,11 +1,6 @@
 package com.VacationProject.VacationProjectFrontEnd.Employee;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +9,16 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
+    private final PasswordEncoder passwordEncoder;
 
     private final EmployeeRepository employeeRepository;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(
+            EmployeeRepository employeeRepository,
+            PasswordEncoder passwordEncoder) {
         this.employeeRepository = employeeRepository;
+        this.passwordEncoder =passwordEncoder;
     }
 
     public Employee findByEmployeeName(String employeeName) {
@@ -52,5 +50,9 @@ public class EmployeeService {
                         .encode(employee.getEmployeeName())
         );
         employeeRepository.save(employee);
+    }
+
+    public void deleteById(int employeeId) {
+        employeeRepository.deleteById(employeeId);
     }
 }
