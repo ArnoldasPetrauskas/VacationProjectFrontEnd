@@ -1,12 +1,9 @@
 package com.VacationProject.VacationProjectFrontEnd;
 
-import com.VacationProject.VacationProjectFrontEnd.Employee.CustomEmployeeDetailsService;
 import com.VacationProject.VacationProjectFrontEnd.Employee.EmployeeDetailsMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -28,7 +25,7 @@ public class CustomSuccessHandler extends SavedRequestAwareAuthenticationSuccess
                 .stream().findFirst().get().toString();
 
         switch (role) {
-            case "ROLE_EMPLOYEE" -> redirectURL = "/vacations/employee/home";
+            case "ROLE_EMPLOYEE" -> redirectURL = "/employee/home/";
             case "ROLE_ADMIN" -> redirectURL = "/admin/dashboard";
             default -> redirectURL = "/vacations/login";
         }

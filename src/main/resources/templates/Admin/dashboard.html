@@ -6,18 +6,26 @@
     <title>Admin dashboard</title>
 </head>
 <body>
-<header th:replace="~{partials/header}"></header>
+<header th:replace="~{partials/headerLoggedIn}"></header>
 <main class="container-fluid">
 
-    <h1>List of organizers</h1>
+    <h4>List of employees</h4>
     <div th:each="employee : ${employees}">
         <a th:href="@{/vacations/employee/home/{id}(id=${employee.id})}">
             <div th:text="${employee.employeeName}"></div>
         </a>
     </div>
+    <button><a th:href="@{/admin/dashboard/newEmployee}">Create new</a></button>
 
-    <h1>List of organizers</h1>
+    <h4>List of organizers</h4>
     <div th:each="organizer : ${organizers}">
+        <a th:href="@{/vacations/organizer/{id}(id=${organizer.id})}">
+            <div th:text="${organizer.name}"></div>
+        </a>
+    </div>
+
+    <h4>List of vacations</h4>
+    <div th:each="vacation : ${vacations}">
         <a th:href="@{/vacations/organizer/{id}(id=${organizer.id})}">
             <div th:text="${organizer.name}"></div>
         </a>
@@ -25,10 +33,7 @@
 
     <div>
         <div>
-            <a style="text-decoration: none" href="javascript: document.logoutForm.submit()">Logout 🔓</a>
-            <form name="logoutForm" th:action="@{/logout}" method="POST" th:hidden="true">
-                <input hidden type="submit" value="Logout"/>
-            </form>
+
         </div>
     </div>
 </main>

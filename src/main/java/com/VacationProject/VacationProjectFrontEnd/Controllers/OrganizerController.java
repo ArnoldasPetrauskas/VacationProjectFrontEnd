@@ -17,7 +17,7 @@ public class OrganizerController {
     @GetMapping("/vacations/organizer/{id}")
     public String singleOrganizer(@PathVariable int id, Model model){
         ResponseEntity<Organizer> response = restTemplate
-                .getForEntity("http://localhost:8082/organizers" + id, Organizer.class);
+                .getForEntity("http://localhost:8082/organizers/organizer/" + id, Organizer.class);
 
         model.addAttribute("organizer", response.getBody());
 

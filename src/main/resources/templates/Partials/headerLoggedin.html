@@ -1,0 +1,13 @@
+<header>
+    <nav class="nav site-navbar">
+        <ul class="option-bar text-center">
+            <li class="nav-bar-option"><a href="/">Home</a></li>
+            <li class="nav-bar-option">
+                <a style="text-decoration: none" href="javascript: document.logoutForm.submit()">Logout 🔓</a>
+                <form name="logoutForm" th:action="@{/logout}" method="POST" th:hidden="true">
+                    <input hidden type="submit" value="Logout"/>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>

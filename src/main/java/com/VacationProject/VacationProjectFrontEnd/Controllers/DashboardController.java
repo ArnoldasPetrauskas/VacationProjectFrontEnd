@@ -1,5 +1,6 @@
 package com.VacationProject.VacationProjectFrontEnd.Controllers;
 
+import com.VacationProject.VacationProjectFrontEnd.Employee.Employee;
 import com.VacationProject.VacationProjectFrontEnd.Employee.EmployeeService;
 import com.VacationProject.VacationProjectFrontEnd.Organizer.Organizers;
 import org.slf4j.Logger;
@@ -7,15 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class DashboardController {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     RestTemplate restTemplate;
@@ -47,5 +48,23 @@ public class DashboardController {
                 .getForEntity("http://localhost:8082/organizers", Organizers.class),
                  HttpStatus.OK).getBody().getBody();
 
+    }
+
+    @GetMapping("/admin/dashboard/newEmployee")
+    public String newEmployeePage(Model model) {
+        model.addAttribute("employee", new Employee());
+        return "admin/newEmployee";
+    }
+
+    @PostMapping("/admin/dashboard/newEmployee")
+    public String createNewEmployee(Employee employee, Model model) {
+        try {
+            employeeService.findByEmployeeName(employee.getEmployeeName());
+        } catch (UsernameNotFoundException e){
+            employeeService.saveAndEncodePassword(employee);
+            return "redirect:/admin/dashboard";
+        }
+        model.addAttribute("error", "Username already taken");
+        return "/admin/dashboard/newEmployee";
     }
 }

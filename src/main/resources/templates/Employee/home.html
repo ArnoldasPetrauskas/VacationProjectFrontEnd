@@ -6,13 +6,11 @@
   <title>🏡</title>
 </head>
 <body>
+<header th:replace="~{partials/headerLoggedIn}"></header>
 <h1>Home page 🏡</h1>
 <div>
   <div>
-    <a style="text-decoration: none" href="javascript: document.logoutForm.submit()">Logout 🔓</a>
-    <form name="logoutForm" th:action="@{/logout}" method="POST" th:hidden="true">
-      <input hidden type="submit" value="Logout"/>
-    </form>
+
   </div>
 </div>
 </body>

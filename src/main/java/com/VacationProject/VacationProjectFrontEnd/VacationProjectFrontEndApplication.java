@@ -19,20 +19,23 @@ import java.util.List;
 public class VacationProjectFrontEndApplication implements CommandLineRunner {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private EmployeeService employeeService;
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(new CustomEmployeeDetailsService(employeeService));
-        authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setPasswordEncoder(passwordEncoder);
         return authProvider;
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(VacationProjectFrontEndApplication.class, args);
@@ -44,8 +47,8 @@ public class VacationProjectFrontEndApplication implements CommandLineRunner {
     }
 
     private List<Employee> initEmployees() {
-        Employee user = new Employee("user", passwordEncoder().encode("pass"));
-        Employee god = new Employee("god", passwordEncoder().encode("god"));
+        Employee user = new Employee("user", passwordEncoder.encode("pass"));
+        Employee god = new Employee("god", passwordEncoder.encode("god"));
         god.setRole("ADMIN");
         return List.of(user, god);
     }
